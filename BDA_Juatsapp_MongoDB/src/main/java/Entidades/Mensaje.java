@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
  *
  * @author rober
  */
-class Mensaje {
+public class Mensaje {
 
     private String texto;
     private ObjectId emisor;
@@ -48,6 +48,11 @@ class Mensaje {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return "Mensaje{" + "texto=" + texto + ", emisor=" + emisor + ", fecha=" + fecha + '}';
     }
 
 }

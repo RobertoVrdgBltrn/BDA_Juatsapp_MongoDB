@@ -55,4 +55,9 @@ public class Chat {
         this.mensajes = mensajes;
     }
 
+    @Override
+    public String toString() {
+        return "Chat{" + "id=" + id + ", participantes=" + participantes + ", mensajes=" + mensajes + '}';
+    }
+
 }

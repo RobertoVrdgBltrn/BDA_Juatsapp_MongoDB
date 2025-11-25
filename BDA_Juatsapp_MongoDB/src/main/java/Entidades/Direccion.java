@@ -48,4 +48,9 @@ public class Direccion {
         this.ciudad = ciudad;
     }
 
+    @Override
+    public String toString() {
+        return "Direccion{" + "calle=" + calle + ", colonia=" + colonia + ", ciudad=" + ciudad + '}';
+    }
+
 }

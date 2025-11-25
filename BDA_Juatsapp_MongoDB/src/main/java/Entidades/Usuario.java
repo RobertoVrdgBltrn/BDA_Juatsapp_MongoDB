@@ -100,4 +100,9 @@ public class Usuario {
         this.chats = chats;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", telefono=" + telefono + ", password=" + password + ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion + ", chats=" + chats + '}';
+    }
+
 }
