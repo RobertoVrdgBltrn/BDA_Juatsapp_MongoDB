@@ -13,46 +13,62 @@ import org.bson.types.ObjectId;
  */
 public class Mensaje {
 
-    private String texto;
-    private ObjectId emisor;
-    private Date fecha;
+    private ObjectId id;
+    private ObjectId idEmisor;
+    private String contenido;
+    private Date fechaEnvio;
 
     public Mensaje() {
     }
 
-    public Mensaje(String texto, ObjectId emisor, Date fecha) {
-        this.texto = texto;
-        this.emisor = emisor;
-        this.fecha = fecha;
+    public Mensaje(ObjectId idEmisor, String contenido, Date fechaEnvio) {
+        this.idEmisor = idEmisor;
+        this.contenido = contenido;
+        this.fechaEnvio = fechaEnvio;
     }
 
-    public String getTexto() {
-        return texto;
+    public Mensaje(ObjectId id, ObjectId idEmisor, String contenido, Date fechaEnvio) {
+        this.id = id;
+        this.idEmisor = idEmisor;
+        this.contenido = contenido;
+        this.fechaEnvio = fechaEnvio;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public ObjectId getId() {
+        return id;
     }
 
-    public ObjectId getEmisor() {
-        return emisor;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
-    public void setEmisor(ObjectId emisor) {
-        this.emisor = emisor;
+    public ObjectId getIdEmisor() {
+        return idEmisor;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public void setIdEmisor(ObjectId idEmisor) {
+        this.idEmisor = idEmisor;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public Date getFechaEnvio() {
+        return fechaEnvio;
+    }
+
+    public void setFechaEnvio(Date fechaEnvio) {
+        this.fechaEnvio = fechaEnvio;
     }
 
     @Override
     public String toString() {
-        return "Mensaje{" + "texto=" + texto + ", emisor=" + emisor + ", fecha=" + fecha + '}';
+        return "Mensaje{" + "id=" + id + ", idEmisor=" + idEmisor + ", contenido=" + contenido + ", fechaEnvio=" + fechaEnvio + '}';
     }
 
 }

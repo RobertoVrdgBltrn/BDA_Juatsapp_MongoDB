@@ -8,7 +8,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>com.mycompany.bda_juatsapp_mongodb.BDA_Juatsapp_MongoDB</exec.mainClass>
+        <exec.mainClass>com.mycompany.bda_juatsapp_mongodb.PruebasUsuario</exec.mainClass>
     </properties>
     <dependencies>  
         <dependency>  

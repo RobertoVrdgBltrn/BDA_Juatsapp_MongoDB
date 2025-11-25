@@ -6,10 +6,13 @@ package Persistencia;
 
 import Entidades.Chat;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -19,18 +22,13 @@ public class ChatDAO implements IChatDAO {
 
     private MongoCollection<Chat> coleccion;
 
-    public ChatDAO(MongoCollection coleccion) {
-        this.coleccion = coleccion;
+    public ChatDAO(MongoDatabase database) {
+        this.coleccion = database.getCollection("chats", Chat.class);
     }
 
     @Override
     public void insertar(Chat chat) {
         coleccion.insertOne(chat);
-    }
-
-    @Override
-    public Chat obtenerPorId(String id) {
-        return coleccion.find(Filters.eq("_id", id)).first();
     }
 
     @Override
@@ -44,6 +42,17 @@ public class ChatDAO implements IChatDAO {
     @Override
     public List<Chat> obtenerChatsDeUsuario(String telefono) {
         return coleccion.find(Filters.in("participantes", telefono)).into(new ArrayList<>());
+    }
+
+    @Override
+    public Chat obtenerPorId(ObjectId id) {
+        Bson filtro = Filters.eq("_id", id);
+        return coleccion.find(filtro).first();
+    }
+
+    @Override
+    public List<Chat> obtenerTodos() {
+        return coleccion.find().into(new ArrayList<>());
     }
 
 }

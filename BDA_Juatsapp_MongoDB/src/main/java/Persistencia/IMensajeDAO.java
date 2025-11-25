@@ -6,6 +6,7 @@ package Persistencia;
 
 import Entidades.Mensaje;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -13,7 +14,9 @@ import java.util.List;
  */
 public interface IMensajeDAO {
 
-    void insertar(Mensaje mensaje);
+    void insertar(ObjectId idChat, Mensaje mensaje);
 
     List<Mensaje> obtenerPorChat(String idChat);
+    
+    List<Mensaje> obtenerMensajesDeChat(ObjectId idChat);
 }

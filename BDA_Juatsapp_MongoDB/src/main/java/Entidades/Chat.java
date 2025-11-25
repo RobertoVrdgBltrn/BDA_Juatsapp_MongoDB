@@ -18,6 +18,13 @@ public class Chat {
     private List<Mensaje> mensajes;
 
     public Chat() {
+        this.participantes = new java.util.ArrayList<>();
+        this.mensajes = new java.util.ArrayList<>();
+    }
+
+    public Chat(List<ObjectId> participantes) {
+        this.participantes = participantes;
+        this.mensajes = new java.util.ArrayList<>();
     }
 
     public Chat(List<ObjectId> participantes, List<Mensaje> mensajes) {

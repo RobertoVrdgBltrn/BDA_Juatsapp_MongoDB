@@ -6,6 +6,7 @@ package Persistencia;
 
 import Entidades.Chat;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -15,9 +16,11 @@ public interface IChatDAO {
 
     void insertar(Chat chat);
 
-    Chat obtenerPorId(String id);
+    Chat obtenerPorId(ObjectId id);
 
     void agregarParticipante(String chatId, String telefonoUsuario);
 
     List<Chat> obtenerChatsDeUsuario(String telefono);
+    
+    List<Chat> obtenerTodos();    
 }
