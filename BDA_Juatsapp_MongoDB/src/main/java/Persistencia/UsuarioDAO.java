@@ -5,6 +5,7 @@
 package Persistencia;
 
 import Entidades.Usuario;
+import Utilidades.Seguridad;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -25,6 +26,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public void insertar(Usuario usuario) {
+        usuario.setPassword(Seguridad.encriptar(usuario.getPassword()));
         coleccion.insertOne(usuario);
     }
 
@@ -42,5 +44,17 @@ public class UsuarioDAO implements IUsuarioDAO {
     public List<Usuario> obtenerTodos() {
         return coleccion.find().into(new ArrayList<>());
     }
+
+    @Override
+    public boolean iniciarSesion(String telefono, String password) throws Exception {
+        Usuario usuario = obtenerPorTelefono(telefono);
+        if (usuario == null) {
+            return false;
+        }
+        
+        return Seguridad.verificar(password, usuario.getPassword());
+    }
+
+    
 
 }

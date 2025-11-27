@@ -36,7 +36,7 @@ public class PruebasUsuario {
         u.setDireccion(d);
         u.setChats(new ArrayList<ObjectId>());
         
-        //udao.insertar(u);
+        udao.insertar(u);
         
         //Usuario buscado = udao.obtenerPorTelefono("6442286891");
         //System.out.println(buscado);

@@ -20,4 +20,6 @@ public interface IUsuarioDAO {
     void actualizar(Usuario usuario);
 
     List<Usuario> obtenerTodos();
+    
+    boolean iniciarSesion(String telefono, String password) throws Exception;
 }
