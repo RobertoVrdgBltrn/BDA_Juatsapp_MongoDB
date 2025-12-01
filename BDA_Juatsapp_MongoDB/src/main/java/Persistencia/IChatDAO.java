@@ -18,9 +18,11 @@ public interface IChatDAO {
 
     Chat obtenerPorId(ObjectId id);
 
-    void agregarParticipante(String chatId, String telefonoUsuario);
+    void agregarParticipante(ObjectId chatId, ObjectId idUsuario);
 
-    List<Chat> obtenerChatsDeUsuario(String telefono);
+    List<Chat> obtenerChatsDeUsuario(ObjectId idUsuario);
+    
+    Chat obtenerChatPorParticipantes(ObjectId idU1, ObjectId idU2);
     
     List<Chat> obtenerTodos();    
 }

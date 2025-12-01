@@ -11,6 +11,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -28,6 +29,11 @@ public class UsuarioDAO implements IUsuarioDAO {
     public void insertar(Usuario usuario) {
         usuario.setPassword(Seguridad.encriptar(usuario.getPassword()));
         coleccion.insertOne(usuario);
+    }
+    
+    @Override
+    public Usuario obtenerPorId(ObjectId id) {
+        return coleccion.find(Filters.eq("_id", id)).first();
     }
 
     @Override
@@ -54,6 +60,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         
         return Seguridad.verificar(password, usuario.getPassword());
     }
+
 
     
 

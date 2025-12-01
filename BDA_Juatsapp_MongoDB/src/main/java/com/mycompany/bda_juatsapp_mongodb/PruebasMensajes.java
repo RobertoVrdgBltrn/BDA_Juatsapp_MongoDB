@@ -21,7 +21,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- *
+ * 
  * @author rober
  */
 public class PruebasMensajes {
@@ -38,34 +38,42 @@ public class PruebasMensajes {
         Usuario u2 = udao.obtenerPorTelefono("6441234567");
 
         if (u1 == null || u2 == null) {
-            System.out.println("agregalos primero");
+            System.out.println("Agregar primero los usuarios");
             return;
         }
 
-        List<ObjectId> participantes = new ArrayList<>();
-        participantes.add(u1.getId());
-        participantes.add(u2.getId());
+        // Buscar chat existente
+        Chat chatExistente = cdao.obtenerChatPorParticipantes(u1.getId(), u2.getId());
 
-//        Chat chat = new Chat(participantes);
-//        cdao.insertar(chat);
-//        System.out.println("Chat creado correctamente");
+        Chat chatActual;
+        if (chatExistente == null) {
+            System.out.println("No existe chat, creando uno nuevo");
 
-//        // Recuperar el chat recién insertado (último en la lista)
-        List<Chat> chats = cdao.obtenerTodos();
-        Chat chatCreado = chats.get(chats.size() - 1);
-//        System.out.println("Chat obtenido: " + chatCreado.getId());
+            List<ObjectId> participantes = new ArrayList<>();
+            participantes.add(u1.getId());
+            participantes.add(u2.getId());
 
-//        // Crear mensajes y agregarlos al chat
-//        Mensaje msg1 = new Mensaje(u1.getId(), "Hola, ¿cómo estás?", new Date());
-//        Mensaje msg2 = new Mensaje(u2.getId(), "Todo bien bro, ¿y tú?", new Date());
-//
-//        // Insertar mensajes
-//        mdao.insertar(chatCreado.getId(), msg1);
-//        mdao.insertar(chatCreado.getId(), msg2);
-//
-//        System.out.println("Mensajes insertados correctamente");
-        
-        mdao.obtenerMensajesDeChat(chatCreado.getId()).forEach(System.out::println);
-        
+            chatActual = new Chat(participantes);
+            cdao.insertar(chatActual);
+
+            System.out.println("Chat creado: " + chatActual.getId());
+        } else {
+            chatActual = chatExistente;
+            System.out.println("Chat encontrado: " + chatActual.getId());
+        }
+
+        // Crear mensajes NUEVOS
+        Mensaje msgNuevo1 = new Mensaje(u1.getId(), "Otro mensaje", new Date());
+        Mensaje msgNuevo2 = new Mensaje(u2.getId(), "Recibido️", new Date());
+
+        // Insertar mensajes
+        mdao.insertar(chatActual.getId(), msgNuevo1);
+        mdao.insertar(chatActual.getId(), msgNuevo2);
+
+        System.out.println("Mensajes agregados");
+
+        // Mostrar mensajes actuales del chat
+        System.out.println("Mensajes del chat:");
+        mdao.obtenerMensajesDeChat(chatActual.getId()).forEach(System.out::println);
     }
 }

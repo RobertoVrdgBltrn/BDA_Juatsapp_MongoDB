@@ -36,7 +36,16 @@ public class PruebasUsuario {
         u.setDireccion(d);
         u.setChats(new ArrayList<ObjectId>());
         
+        Usuario u1 = new Usuario();
+        u1.setTelefono("6442286891");
+        u1.setPassword("juegosfriv");
+        u1.setSexo("Hombre");
+        u1.setFechaNacimiento(new Date());
+        u1.setDireccion(d);
+        u1.setChats(new ArrayList<ObjectId>());
+        
         udao.insertar(u);
+        udao.insertar(u1);
         
         //Usuario buscado = udao.obtenerPorTelefono("6442286891");
         //System.out.println(buscado);

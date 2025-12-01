@@ -32,16 +32,16 @@ public class ChatDAO implements IChatDAO {
     }
 
     @Override
-    public void agregarParticipante(String chatId, String telefonoUsuario) {
+    public void agregarParticipante(ObjectId chatId, ObjectId idUsuario) {
         coleccion.updateOne(
                 Filters.eq("_id", chatId),
-                Updates.addToSet("participantes", telefonoUsuario)
+                Updates.addToSet("participantes", idUsuario)
         );
     }
 
     @Override
-    public List<Chat> obtenerChatsDeUsuario(String telefono) {
-        return coleccion.find(Filters.in("participantes", telefono)).into(new ArrayList<>());
+    public List<Chat> obtenerChatsDeUsuario(ObjectId idUsuario) {
+        return coleccion.find(Filters.in("participantes", idUsuario)).into(new ArrayList<>());
     }
 
     @Override
@@ -53,6 +53,13 @@ public class ChatDAO implements IChatDAO {
     @Override
     public List<Chat> obtenerTodos() {
         return coleccion.find().into(new ArrayList<>());
+    }
+
+    @Override
+    public Chat obtenerChatPorParticipantes(ObjectId idU1, ObjectId idU2) {
+        return coleccion.find(
+            Filters.all("participantes", idU1, idU2)
+        ).first();
     }
 
 }

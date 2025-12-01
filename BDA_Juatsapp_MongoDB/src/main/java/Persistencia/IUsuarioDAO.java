@@ -6,6 +6,7 @@ package Persistencia;
 
 import Entidades.Usuario;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -18,6 +19,8 @@ public interface IUsuarioDAO {
     Usuario obtenerPorTelefono(String telefono);
 
     void actualizar(Usuario usuario);
+    
+    Usuario obtenerPorId(ObjectId id);
 
     List<Usuario> obtenerTodos();
     
