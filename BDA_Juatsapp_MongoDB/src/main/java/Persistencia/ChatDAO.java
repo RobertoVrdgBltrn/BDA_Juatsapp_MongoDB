@@ -58,7 +58,7 @@ public class ChatDAO implements IChatDAO {
     @Override
     public Chat obtenerChatPorParticipantes(ObjectId idU1, ObjectId idU2) {
         return coleccion.find(
-            Filters.all("participantes", idU1, idU2)
+                Filters.all("participantes", idU1, idU2)
         ).first();
     }
 

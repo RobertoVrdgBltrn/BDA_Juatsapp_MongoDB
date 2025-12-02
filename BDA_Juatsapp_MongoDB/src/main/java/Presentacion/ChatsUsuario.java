@@ -14,7 +14,9 @@ import Persistencia.IUsuarioDAO;
 import Persistencia.MensajeDAO;
 import Persistencia.UsuarioDAO;
 import com.mongodb.client.MongoDatabase;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.bson.types.ObjectId;
 
@@ -89,6 +91,7 @@ public class ChatsUsuario extends javax.swing.JFrame {
         btnBuscarMensajes = new javax.swing.JButton();
         btnCerrarSecion = new javax.swing.JButton();
         btnCrearChat = new javax.swing.JButton();
+        btnCargarTabla = new javax.swing.JButton();
         pnlMensajes = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMensajes = new javax.swing.JTable();
@@ -103,11 +106,10 @@ public class ChatsUsuario extends javax.swing.JFrame {
 
         tblContactos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null}
+
             },
             new String [] {
-                "Contactos"
+                "Telefono", "ID Chat"
             }
         ));
         jScrollPane1.setViewportView(tblContactos);
@@ -120,8 +122,25 @@ public class ChatsUsuario extends javax.swing.JFrame {
         });
 
         btnCerrarSecion.setText("Cerrar Sesion");
+        btnCerrarSecion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSecionActionPerformed(evt);
+            }
+        });
 
         btnCrearChat.setText("Chat Nuevo");
+        btnCrearChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearChatActionPerformed(evt);
+            }
+        });
+
+        btnCargarTabla.setText("Cargar Tabla");
+        btnCargarTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarTablaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlChatsLayout = new javax.swing.GroupLayout(pnlChats);
         pnlChats.setLayout(pnlChatsLayout);
@@ -138,15 +157,19 @@ public class ChatsUsuario extends javax.swing.JFrame {
                 .addComponent(btnBuscarMensajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
             .addGroup(pnlChatsLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(40, 40, 40)
                 .addComponent(btnCrearChat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(99, 99, 99))
+                .addGap(47, 47, 47)
+                .addComponent(btnCargarTabla)
+                .addGap(34, 34, 34))
         );
         pnlChatsLayout.setVerticalGroup(
             pnlChatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChatsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCrearChat)
+                .addGroup(pnlChatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearChat)
+                    .addComponent(btnCargarTabla))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -195,6 +218,11 @@ public class ChatsUsuario extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTextArea1);
 
         btnEnviarMensaje.setText("Mandar Mensaje");
+        btnEnviarMensaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarMensajeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEnviarMensajeLayout = new javax.swing.GroupLayout(pnlEnviarMensaje);
         pnlEnviarMensaje.setLayout(pnlEnviarMensajeLayout);
@@ -249,8 +277,53 @@ public class ChatsUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMensajesActionPerformed
-        // TODO add your handling code here:
+        int fila = tblContactos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un chat primero");
+            return;
+        }
+
+        String idChatString = tblContactos.getValueAt(fila, 1).toString();
+        ObjectId idChat = new ObjectId(idChatString);
+        cargarMensajes(idChat);
     }//GEN-LAST:event_btnBuscarMensajesActionPerformed
+
+    private void btnEnviarMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarMensajeActionPerformed
+        int fila = tblContactos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un chat primero");
+            return;
+        }
+
+        String texto = jTextArea1.getText().trim();
+        if (texto.isEmpty()) {
+            return;
+        }
+
+        String idChatString = tblContactos.getValueAt(fila, 1).toString();
+        ObjectId idChat = new ObjectId(idChatString);
+
+        Mensaje msg = new Mensaje(usuarioActual.getId(), texto, new Date());
+        mensajeDAO.insertar(idChat, msg);
+
+        jTextArea1.setText("");
+        cargarMensajes(idChat); // refrescar
+    }//GEN-LAST:event_btnEnviarMensajeActionPerformed
+
+    private void btnCrearChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearChatActionPerformed
+        AgregarChat ventana = new AgregarChat(usuarioActual, usuarioDAO, chatDAO);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnCrearChatActionPerformed
+
+    private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
+        dispose();
+        Main m = new Main();
+        m.setVisible(true);
+    }//GEN-LAST:event_btnCerrarSecionActionPerformed
+
+    private void btnCargarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTablaActionPerformed
+        cargarTablaChats();
+    }//GEN-LAST:event_btnCargarTablaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,7 +353,7 @@ public class ChatsUsuario extends javax.swing.JFrame {
 //        //</editor-fold>
 //
 //        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
+//        java.awt.EventQueue.invokeLater(new Runnable() Maid Kyouiku. Botsuraku Kizoku Rurikawa Tsubaki The Animation{
 //            public void run() {
 //                new ChatsUsuario().setVisible(true);
 //            }
@@ -289,6 +362,7 @@ public class ChatsUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarMensajes;
+    private javax.swing.JButton btnCargarTabla;
     private javax.swing.JButton btnCerrarSecion;
     private javax.swing.JButton btnCrearChat;
     private javax.swing.JButton btnEnviarMensaje;

@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 public class Main extends javax.swing.JFrame {
 
     MongoDatabase db = ConexionMongo.conectar();
-    
 
     /**
      * Creates new form Main
@@ -135,6 +134,7 @@ public class Main extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Bienvenido");
                 ChatsUsuario cu = new ChatsUsuario(udao.obtenerPorTelefono(telefono), db);
                 cu.setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o Contrasena Incorrectos");
             }
@@ -144,7 +144,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInciarSesionActionPerformed
 
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
-        // TODO add your handling code here:
+        AgregarUsuario au = new AgregarUsuario();
+        au.setVisible(true);
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
     /**

@@ -41,39 +41,39 @@ public class PruebasMensajes {
             System.out.println("Agregar primero los usuarios");
             return;
         }
-
-        // Buscar chat existente
-        Chat chatExistente = cdao.obtenerChatPorParticipantes(u1.getId(), u2.getId());
-
-        Chat chatActual;
-        if (chatExistente == null) {
-            System.out.println("No existe chat, creando uno nuevo");
-
-            List<ObjectId> participantes = new ArrayList<>();
-            participantes.add(u1.getId());
-            participantes.add(u2.getId());
-
-            chatActual = new Chat(participantes);
-            cdao.insertar(chatActual);
-
-            System.out.println("Chat creado: " + chatActual.getId());
-        } else {
-            chatActual = chatExistente;
-            System.out.println("Chat encontrado: " + chatActual.getId());
-        }
-
-        // Crear mensajes NUEVOS
-        Mensaje msgNuevo1 = new Mensaje(u1.getId(), "Otro mensaje", new Date());
-        Mensaje msgNuevo2 = new Mensaje(u2.getId(), "Recibido️", new Date());
-
-        // Insertar mensajes
-        mdao.insertar(chatActual.getId(), msgNuevo1);
-        mdao.insertar(chatActual.getId(), msgNuevo2);
-
-        System.out.println("Mensajes agregados");
-
-        // Mostrar mensajes actuales del chat
-        System.out.println("Mensajes del chat:");
-        mdao.obtenerMensajesDeChat(chatActual.getId()).forEach(System.out::println);
+//
+//        // Buscar chat existente
+//        Chat chatExistente = cdao.obtenerChatPorParticipantes(u1.getId(), u2.getId());
+//
+//        Chat chatActual;
+//        if (chatExistente == null) {
+//            System.out.println("No existe chat, creando uno nuevo");
+//
+//            List<ObjectId> participantes = new ArrayList<>();
+//            participantes.add(u1.getId());
+//            participantes.add(u2.getId());
+//
+//            chatActual = new Chat(participantes);
+//            cdao.insertar(chatActual);
+//
+//            System.out.println("Chat creado: " + chatActual.getId());
+//        } else {
+//            chatActual = chatExistente;
+//            System.out.println("Chat encontrado: " + chatActual.getId());
+//        }
+//
+//        // Crear mensajes NUEVOS
+//        Mensaje msgNuevo1 = new Mensaje(u1.getId(), "Otro mensaje", new Date());
+//        Mensaje msgNuevo2 = new Mensaje(u2.getId(), "Recibido️", new Date());
+//
+//        // Insertar mensajes
+//        mdao.insertar(chatActual.getId(), msgNuevo1);
+//        mdao.insertar(chatActual.getId(), msgNuevo2);
+//
+//        System.out.println("Mensajes agregados");
+//
+//        // Mostrar mensajes actuales del chat
+//        System.out.println("Mensajes del chat:");
+//        mdao.obtenerMensajesDeChat(chatActual.getId()).forEach(System.out::println);
     }
 }
