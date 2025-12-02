@@ -19,54 +19,15 @@ import org.bson.types.ObjectId;
  *
  * @author Angel Servin
  */
-public class AU extends javax.swing.JFrame { //esta clase seria agregarUsuario
+public class AgregarUsuarioChilo extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AU.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AgregarUsuarioChilo.class.getName());
 
     /**
-     * Creates new form AU
+     * Creates new form AgregarUsuarioChilo
      */
-    public AU() {
+    public AgregarUsuarioChilo() {
         initComponents();
-        hacerInvisibles();
-    }
-
-    private void hacerInvisibles() {
-
-        // SEXO
-        txtSexo.setForeground(txtSexo.getBackground());
-        txtSexo.setCaretColor(txtSexo.getBackground());
-        txtSexo.setBorder(null);
-
-        // TELEFONO
-        txtTelefono.setForeground(txtTelefono.getBackground());
-        txtTelefono.setCaretColor(txtTelefono.getBackground());
-        txtTelefono.setBorder(null);
-
-        // FECHA NACIMIENTO
-        txtFechaNacimiento.setForeground(txtFechaNacimiento.getBackground());
-        txtFechaNacimiento.setCaretColor(txtFechaNacimiento.getBackground());
-        txtFechaNacimiento.setBorder(null);
-
-        // CONTRASEÑA
-        txtContraseña.setForeground(txtContraseña.getBackground());
-        txtContraseña.setCaretColor(txtContraseña.getBackground());
-        txtContraseña.setBorder(null);
-
-        // CIUDAD
-        txtCiudad.setForeground(txtCiudad.getBackground());
-        txtCiudad.setCaretColor(txtCiudad.getBackground());
-        txtCiudad.setBorder(null);
-
-        // COLONIA
-        txtColonia.setForeground(txtColonia.getBackground());
-        txtColonia.setCaretColor(txtColonia.getBackground());
-        txtColonia.setBorder(null);
-
-        // CALLE
-        txtCalle.setForeground(txtCalle.getBackground());
-        txtCalle.setCaretColor(txtCalle.getBackground());
-        txtCalle.setBorder(null);
     }
 
     /**
@@ -79,82 +40,85 @@ public class AU extends javax.swing.JFrame { //esta clase seria agregarUsuario
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtTelefono = new javax.swing.JTextField();
         txtSexo = new javax.swing.JTextField();
         txtFechaNacimiento = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
         txtCalle = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JTextField();
-        txtCiudad = new javax.swing.JTextField();
         txtColonia = new javax.swing.JTextField();
-        btnCrearCuenta = new javax.swing.JButton();
+        txtCiudad = new javax.swing.JTextField();
+        txtContrasena = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        btnCrearCuenta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtSexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSexoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 140, 10));
-
-        txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaNacimientoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 140, 10));
-
+        txtTelefono.setBackground(new java.awt.Color(217, 217, 217));
+        txtTelefono.setSelectedTextColor(new java.awt.Color(51, 51, 51));
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 140, 10));
+        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 102, 128, -1));
 
+        txtSexo.setBackground(new java.awt.Color(217, 217, 217));
+        txtSexo.setSelectedTextColor(new java.awt.Color(51, 51, 51));
+        txtSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSexoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 131, 128, 20));
+
+        txtFechaNacimiento.setBackground(new java.awt.Color(217, 217, 217));
+        txtFechaNacimiento.setSelectedTextColor(new java.awt.Color(51, 51, 51));
+        txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaNacimientoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 156, 128, 20));
+
+        txtCalle.setBackground(new java.awt.Color(217, 217, 217));
+        txtCalle.setSelectedTextColor(new java.awt.Color(51, 51, 51));
         txtCalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCalleActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 192, 140, 10));
+        jPanel1.add(txtCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 181, 128, -1));
 
-        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseñaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 130, 10));
-
-        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCiudadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 242, 130, 10));
-
+        txtColonia.setBackground(new java.awt.Color(217, 217, 217));
+        txtColonia.setSelectedTextColor(new java.awt.Color(51, 51, 51));
         txtColonia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtColoniaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 140, 10));
+        jPanel1.add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 208, 128, 20));
 
-        btnCrearCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/btnCrearCuenta.png"))); // NOI18N
-        btnCrearCuenta.setBorderPainted(false);
-        btnCrearCuenta.setContentAreaFilled(false);
-        btnCrearCuenta.setDefaultCapable(false);
-        btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
+        txtCiudad.setBackground(new java.awt.Color(217, 217, 217));
+        txtCiudad.setSelectedTextColor(new java.awt.Color(51, 51, 51));
+        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearCuentaActionPerformed(evt);
+                txtCiudadActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
+        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 234, 128, 20));
 
-        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/btnVolver.png"))); // NOI18N
+        txtContrasena.setBackground(new java.awt.Color(217, 217, 217));
+        txtContrasena.setSelectedTextColor(new java.awt.Color(51, 51, 51));
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContrasenaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 261, 128, 20));
+
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btnVolver.png"))); // NOI18N
         btnVolver.setBorderPainted(false);
         btnVolver.setContentAreaFilled(false);
         btnVolver.setDefaultCapable(false);
@@ -165,7 +129,18 @@ public class AU extends javax.swing.JFrame { //esta clase seria agregarUsuario
         });
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/AgregarUsuario.png"))); // NOI18N
+        btnCrearCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btnCrearCuenta.png"))); // NOI18N
+        btnCrearCuenta.setBorderPainted(false);
+        btnCrearCuenta.setContentAreaFilled(false);
+        btnCrearCuenta.setDefaultCapable(false);
+        btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearCuentaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarUsuario.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 340));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,56 +157,64 @@ public class AU extends javax.swing.JFrame { //esta clase seria agregarUsuario
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSexoActionPerformed
-
-     }//GEN-LAST:event_txtSexoActionPerformed
-
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
-     }//GEN-LAST:event_txtTelefonoActionPerformed
+    private void txtSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSexoActionPerformed
 
     private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
-
-     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
-
-    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseñaActionPerformed
+    }//GEN-LAST:event_txtFechaNacimientoActionPerformed
+
+    private void txtCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCalleActionPerformed
+
+    private void txtColoniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColoniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColoniaActionPerformed
+
+    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCiudadActionPerformed
+
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContrasenaActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         dispose();
+        MainChilo m = new MainChilo();
+        m.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
         try {
-            // Obtener valores del formulario
+
             String telefono = txtTelefono.getText();
-            String password = txtContraseña.getText();
+            String password = txtContrasena.getText();
             String sexo = txtSexo.getText();
             String fechaStr = txtFechaNacimiento.getText();
             String calle = txtCalle.getText();
             String colonia = txtColonia.getText();
             String ciudad = txtCiudad.getText();
 
-            // Validaciones básicas
             if (telefono.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Debe llenar teléfono y contraseña.");
                 return;
             }
 
-            // Convertir fecha
             Date fechaNacimiento = java.sql.Date.valueOf(fechaStr);
 
-            // Crear objeto Dirección
             Direccion direccion = new Direccion(calle, colonia, ciudad);
 
-            // Crear lista vacía para chats
             List<ObjectId> chats = new ArrayList<>();
 
-            // Crear Usuario
             Usuario usuario = new Usuario(telefono, password, sexo, fechaNacimiento, direccion, chats);
 
-            // Llamar DAO para insertar
             MongoDatabase db = ConexionMongo.conectar();
             UsuarioDAO usuarioDAO = new UsuarioDAO(db);
             usuarioDAO.insertar(usuario);
@@ -241,19 +224,8 @@ public class AU extends javax.swing.JFrame { //esta clase seria agregarUsuario
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }    }//GEN-LAST:event_btnCrearCuentaActionPerformed
-
-    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCiudadActionPerformed
-
-    private void txtColoniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColoniaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColoniaActionPerformed
-
-    private void txtCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCalleActionPerformed
+        }
+    }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearCuenta;
@@ -263,7 +235,7 @@ public class AU extends javax.swing.JFrame { //esta clase seria agregarUsuario
     private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtColonia;
-    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtSexo;
     private javax.swing.JTextField txtTelefono;

@@ -24,15 +24,18 @@ import org.bson.types.ObjectId;
  *
  * @author Angel Servin
  */
-public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
+public class ChatsUsuarioChilo extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CU.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ChatsUsuarioChilo.class.getName());
     private Usuario usuarioActual;
     private IChatDAO chatDAO;
     private IMensajeDAO mensajeDAO;
     private IUsuarioDAO usuarioDAO;
 
-    public CU(Usuario usuario, MongoDatabase db) {
+    /**
+     * Creates new form ChatsUsuarioChilo
+     */
+    public ChatsUsuarioChilo(Usuario usuario, MongoDatabase db) {
         initComponents();
         this.usuarioActual = usuario;
         this.usuarioDAO = new UsuarioDAO(db);
@@ -45,14 +48,14 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
     private void cargarTablaChats() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-
         List<Chat> chats = chatDAO.obtenerChatsDeUsuario(usuarioActual.getId());
-
         for (Chat c : chats) {
             for (ObjectId participante : c.getParticipantes()) {
                 if (!participante.equals(usuarioActual.getId())) {
                     Usuario u = usuarioDAO.obtenerPorId(participante);
-                    model.addRow(new Object[]{u.getTelefono(), c.getId().toHexString()});
+                    if (u != null) {
+                        model.addRow(new Object[]{u.getTelefono(), c.getId().toHexString()});
+                    }
                 }
             }
         }
@@ -61,13 +64,12 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
     private void cargarMensajes(ObjectId idChat) {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
-
         List<Mensaje> mensajes = mensajeDAO.obtenerMensajesDeChat(idChat);
-
         for (Mensaje m : mensajes) {
             Usuario emisor = usuarioDAO.obtenerPorId(m.getIdEmisor());
+            String telefonoEmisor = (emisor != null) ? emisor.getTelefono() : "Desconocido";
             model.addRow(new Object[]{
-                emisor.getTelefono(),
+                telefonoEmisor,
                 m.getContenido(),
                 m.getFechaEnvio()
             });
@@ -90,11 +92,11 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
         btnCargarTabla = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         btnBuscarMensajes = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        btnMandarMensaje = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        btnMandarMensajes = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,9 +113,9 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 480));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 490));
 
-        btnChatNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/btnChatNuevo.png"))); // NOI18N
+        btnChatNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btnChatNuevo.png"))); // NOI18N
         btnChatNuevo.setBorderPainted(false);
         btnChatNuevo.setContentAreaFilled(false);
         btnChatNuevo.setDefaultCapable(false);
@@ -124,7 +126,7 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
         });
         jPanel1.add(btnChatNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        btnCargarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/btnCargarTabla.png"))); // NOI18N
+        btnCargarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btnCargarTabla.png"))); // NOI18N
         btnCargarTabla.setBorderPainted(false);
         btnCargarTabla.setContentAreaFilled(false);
         btnCargarTabla.setDefaultCapable(false);
@@ -135,7 +137,7 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
         });
         jPanel1.add(btnCargarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
-        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/btnCerrarSesion.png"))); // NOI18N
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btnCerrarSesion.png"))); // NOI18N
         btnCerrarSesion.setBorderPainted(false);
         btnCerrarSesion.setContentAreaFilled(false);
         btnCerrarSesion.setDefaultCapable(false);
@@ -144,9 +146,9 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, -1, -1));
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
 
-        btnBuscarMensajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/btnBuscarMensajes.png"))); // NOI18N
+        btnBuscarMensajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btnBuscarMensajes.png"))); // NOI18N
         btnBuscarMensajes.setBorderPainted(false);
         btnBuscarMensajes.setContentAreaFilled(false);
         btnBuscarMensajes.setDefaultCapable(false);
@@ -155,7 +157,24 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
                 btnBuscarMensajesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 550, -1, -1));
+        jPanel1.add(btnBuscarMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 560, -1, -1));
+
+        btnMandarMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btnMandarMensaje.png"))); // NOI18N
+        btnMandarMensaje.setBorderPainted(false);
+        btnMandarMensaje.setContentAreaFilled(false);
+        btnMandarMensaje.setDefaultCapable(false);
+        btnMandarMensaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMandarMensajeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMandarMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 550, -1, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 580, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -172,24 +191,7 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 580, 390));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 580, -1));
-
-        btnMandarMensajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/btnMandarMensaje.png"))); // NOI18N
-        btnMandarMensajes.setBorderPainted(false);
-        btnMandarMensajes.setContentAreaFilled(false);
-        btnMandarMensajes.setDefaultCapable(false);
-        btnMandarMensajes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMandarMensajesActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnMandarMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilerias/ChatUsuario.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ChatUsuario.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,62 +208,62 @@ public class CU extends javax.swing.JFrame {  //esta clase seria ChatUsuario
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMandarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMandarMensajesActionPerformed
-        int fila = jTable1.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Selecciona un chat primero");
-            return;
-        }
-
-        String texto = jTextArea1.getText().trim();
-        if (texto.isEmpty()) {
-            return;
-        }
-
-        String idChatString = jTable1.getValueAt(fila, 1).toString();
-        ObjectId idChat = new ObjectId(idChatString);
-
-        Mensaje msg = new Mensaje(usuarioActual.getId(), texto, new Date());
-        mensajeDAO.insertar(idChat, msg);
-
-        jTextArea1.setText("");
-        cargarMensajes(idChat);
-    }//GEN-LAST:event_btnMandarMensajesActionPerformed
-
     private void btnBuscarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMensajesActionPerformed
         int fila = jTable1.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Selecciona un chat primero");
+            JOptionPane.showMessageDialog(this, "Selecciona un chat primero", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
         String idChatString = jTable1.getValueAt(fila, 1).toString();
-        ObjectId idChat = new ObjectId(idChatString);
-        cargarMensajes(idChat);
-    }//GEN-LAST:event_btnBuscarMensajesActionPerformed
+        try {
+            ObjectId idChat = new ObjectId(idChatString);
+            cargarMensajes(idChat);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "ID de chat inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }    }//GEN-LAST:event_btnBuscarMensajesActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         dispose();
-        Main m = new Main();
+        MainChilo m = new MainChilo();
         m.setVisible(true);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnChatNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatNuevoActionPerformed
-        AgregarChat ventana = new AgregarChat(usuarioActual, usuarioDAO, chatDAO);
-        ventana.setVisible(true);
-    }//GEN-LAST:event_btnChatNuevoActionPerformed
+        AgregarChatChilo ventana = new AgregarChatChilo(usuarioActual, usuarioDAO, chatDAO);
+        ventana.setVisible(true);    }//GEN-LAST:event_btnChatNuevoActionPerformed
 
     private void btnCargarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTablaActionPerformed
         cargarTablaChats();
-
     }//GEN-LAST:event_btnCargarTablaActionPerformed
+
+    private void btnMandarMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMandarMensajeActionPerformed
+        int fila = jTable1.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un chat primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String texto = jTextArea1.getText().trim();
+        if (texto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El mensaje no puede estar vacío.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String idChatString = jTable1.getValueAt(fila, 1).toString();
+        try {
+            ObjectId idChat = new ObjectId(idChatString);
+            Mensaje msg = new Mensaje(usuarioActual.getId(), texto, new Date());
+            mensajeDAO.insertar(idChat, msg);
+            jTextArea1.setText("");
+            cargarMensajes(idChat);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "ID de chat inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }    }//GEN-LAST:event_btnMandarMensajeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarMensajes;
     private javax.swing.JButton btnCargarTabla;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnChatNuevo;
-    private javax.swing.JButton btnMandarMensajes;
+    private javax.swing.JButton btnMandarMensaje;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
