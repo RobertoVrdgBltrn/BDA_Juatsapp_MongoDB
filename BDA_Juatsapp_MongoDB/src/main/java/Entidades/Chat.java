@@ -8,6 +8,8 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
+ * Clase donde se crearan los chats, mismos que se almacenaran en la bd de
+ * MongoDB.
  *
  * @author rober
  */

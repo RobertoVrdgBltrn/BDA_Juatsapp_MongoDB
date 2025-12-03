@@ -6,6 +6,8 @@
 package Entidades;
 
 /**
+ * Clase donde se crearan las direcciones, mismos que se almacenaran en la bd de
+ * MongoDB.
  *
  * @author rober
  */

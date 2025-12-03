@@ -8,6 +8,8 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 
 /**
+ * Clase donde se crearan los Mensajes, mismos que se almacenaran en la bd de
+ * MongoDB.
  *
  * @author rober
  */

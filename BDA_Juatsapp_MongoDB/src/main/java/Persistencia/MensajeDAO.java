@@ -15,6 +15,8 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
+ * Clase donde se establecen los metodos que se utilizaran para la entidad
+ * "mensaje" en la bd.
  *
  * @author rober
  */
@@ -22,10 +24,21 @@ public class MensajeDAO implements IMensajeDAO {
 
     private final MongoCollection<Chat> coleccionChats;
 
+    /**
+     * Constructor vacio con la concexion a la bd.
+     *
+     * @param database
+     */
     public MensajeDAO(MongoDatabase database) {
         this.coleccionChats = database.getCollection("chats", Chat.class);
     }
 
+    /**
+     * Metodo para insertar un mensaje al chat seleccionado.
+     *
+     * @param idChat recibe el id de chat a donde se le mandaran los mensajes.
+     * @param mensaje un texto que seria el mensaje en si.
+     */
     @Override
     public void insertar(ObjectId idChat, Mensaje mensaje) {
         coleccionChats.updateOne(
@@ -34,16 +47,28 @@ public class MensajeDAO implements IMensajeDAO {
         );
     }
 
+    /**
+     * Metodo par obtener todos los mensajes del chat.
+     *
+     * @param idChat recibe el id del chat.
+     * @return todos los mensajes de dicho chat.
+     */
     @Override
     public List<Mensaje> obtenerMensajesDeChat(ObjectId idChat) {
         Chat chat = coleccionChats.find(Filters.eq("_id", idChat)).first();
         return chat != null ? chat.getMensajes() : new ArrayList<>();
     }
 
+    /**
+     * Metodo para obtener los mensajes de un chat
+     *
+     * @param idChat recibe el id del chat.
+     * @return los mensajes de dicho chat.
+     */
     @Override
     public List<Mensaje> obtenerPorChat(String idChat) {
         Chat chat = coleccionChats.find(Filters.eq("_id", new ObjectId(idChat))).first();
         return chat != null ? chat.getMensajes() : new ArrayList<>();
     }
-    
+
 }
