@@ -10,7 +10,6 @@ import Persistencia.IChatDAO;
 import Persistencia.IUsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import org.bson.types.ObjectId;
 

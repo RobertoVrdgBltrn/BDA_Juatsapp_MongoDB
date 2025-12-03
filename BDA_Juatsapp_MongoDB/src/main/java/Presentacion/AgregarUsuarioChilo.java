@@ -8,6 +8,7 @@ import Entidades.Direccion;
 import Entidades.Usuario;
 import Persistencia.ConexionMongo;
 import Persistencia.UsuarioDAO;
+import Utilidades.Validaciones;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
 import java.util.Date;
@@ -193,37 +194,97 @@ public class AgregarUsuarioChilo extends javax.swing.JFrame {
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
         try {
+            String telefono = txtTelefono.getText().trim();
+            String password = txtContrasena.getText().trim();
+            String sexo = txtSexo.getText().trim();
+            String fechaStr = txtFechaNacimiento.getText().trim();
+            String calle = txtCalle.getText().trim();
+            String colonia = txtColonia.getText().trim();
+            String ciudad = txtCiudad.getText().trim();
 
-            String telefono = txtTelefono.getText();
-            String password = txtContrasena.getText();
-            String sexo = txtSexo.getText();
-            String fechaStr = txtFechaNacimiento.getText();
-            String calle = txtCalle.getText();
-            String colonia = txtColonia.getText();
-            String ciudad = txtCiudad.getText();
+            // Validar Espacios Vacios
+            if (telefono.isEmpty() || password.isEmpty() || sexo.isEmpty()
+                    || fechaStr.isEmpty() || calle.isEmpty() || colonia.isEmpty() || ciudad.isEmpty()) {
 
-            if (telefono.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe llenar teléfono y contraseña.");
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Todos los campos son obligatorios.",
+                        "Campos incompletos y/o vacios",
+                        JOptionPane.WARNING_MESSAGE
+                );
                 return;
             }
 
-            Date fechaNacimiento = java.sql.Date.valueOf(fechaStr);
+            // Validar Telefono
+            if (!Validaciones.validarTelefono(telefono)) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "El telefono debe contener exactamente 10 digitos.",
+                        "Telefono invalido",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            // Validar Contrasenia
+            if (!Validaciones.validarPassword(password)) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "La contraseña debe tener 8 caracteres minimo, incluir letras y números.",
+                        "Contraseña invalida",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            // Validar Sexo
+            if (!sexo.equalsIgnoreCase("M") && !sexo.equalsIgnoreCase("H")) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "El sexo solo puede ser 'M' (Mujer) o 'H' (Hombre).",
+                        "Sexo invalido",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            // Validar Fecha de Nacimiento
+            Date fechaNacimiento;
+            try {
+                fechaNacimiento = java.sql.Date.valueOf(fechaStr); // formato yyyy-mm-dd
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "La fecha debe tener el formato YYYY-MM-DD.",
+                        "Fecha invalida",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
 
             Direccion direccion = new Direccion(calle, colonia, ciudad);
-
             List<ObjectId> chats = new ArrayList<>();
-
             Usuario usuario = new Usuario(telefono, password, sexo, fechaNacimiento, direccion, chats);
-
             MongoDatabase db = ConexionMongo.conectar();
             UsuarioDAO usuarioDAO = new UsuarioDAO(db);
             usuarioDAO.insertar(usuario);
 
-            JOptionPane.showMessageDialog(this, "Usuario creado exitosamente!");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Usuario creado.",
+                    "Registro completado",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
             dispose();
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error: " + ex.getMessage(),
+                    "Error inesperado",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 

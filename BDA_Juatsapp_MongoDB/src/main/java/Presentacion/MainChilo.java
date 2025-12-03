@@ -8,6 +8,7 @@ import Entidades.Usuario;
 import Persistencia.ConexionMongo;
 import Persistencia.IUsuarioDAO;
 import Persistencia.UsuarioDAO;
+import Utilidades.Validaciones;
 import com.mongodb.client.MongoDatabase;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
@@ -99,26 +100,67 @@ public class MainChilo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-
         IUsuarioDAO udao = new UsuarioDAO(db);
 
-        String telefono = txtTelefono.getText();
-        String contrasena = txtContraseña.getText();
+        String telefono = txtTelefono.getText().trim();
+        String contrasena = txtContraseña.getText().trim();
 
+        // Validar Telefono
+        if (!Validaciones.validarTelefono(telefono)) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "El teléfono debe contener exactamente 10 dígitos numéricos.",
+                    "Teléfono inválido",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        // Validar Contrasenia
+        if (!Validaciones.validarPassword(contrasena)) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "La contrasenia debe tener 8 caracteres minimo, incluir letras y numeros.",
+                    "Contrasenia incorrecta.",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        // Iniciar Sesion
         try {
             boolean resultado = udao.iniciarSesion(telefono, contrasena);
+
             if (resultado) {
-                JOptionPane.showMessageDialog(this, "Bienvenido", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Bienvenido",
+                        "Inicio de Sesion Exitoso",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
                 Usuario usuarioActual = udao.obtenerPorTelefono(telefono);
                 ChatsUsuarioChilo cu = new ChatsUsuarioChilo(usuarioActual, db);
                 cu.setVisible(true);
                 dispose();
+
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario o Contraseña Incorrectos", "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Usuario o Contrasenia Incorrectos",
+                        "Error de Autenticacion",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
+
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, "Error al intentar iniciar sesión", ex);
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado al conectar.", "Error", JOptionPane.ERROR_MESSAGE);
+            logger.log(Level.SEVERE, "Error al intentar iniciar sesion", ex);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ocurrio un error inesperado al conectar.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
