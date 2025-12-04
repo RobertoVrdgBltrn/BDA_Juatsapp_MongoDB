@@ -13,7 +13,8 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- * .
+ * null
+ *
  * @author rober
  */
 public class AgregarChat extends javax.swing.JFrame {
@@ -23,7 +24,11 @@ public class AgregarChat extends javax.swing.JFrame {
     private IChatDAO cdao;
 
     /**
-     * Creates new form AgregarChat
+     * Constructor
+     *
+     * @param usuarioActual null
+     * @param udao null
+     * @param cdao null
      */
     public AgregarChat(Usuario usuarioActual, IUsuarioDAO udao, IChatDAO cdao) {
         initComponents();
@@ -107,16 +112,18 @@ public class AgregarChat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * .
-     * @param evt .
+     * null
+     *
+     * @param evt null
      */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
-     * .
-     * @param evt .
+     * null
+     *
+     * @param evt null
      */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String telefonoNuevo = txtContactoNuevo.getText().trim();
@@ -158,41 +165,6 @@ public class AgregarChat extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, "Chat creado correctamente");
         dispose(); // cerrar ventana
     }//GEN-LAST:event_btnAgregarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(AgregarChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(AgregarChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(AgregarChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(AgregarChat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new AgregarChat().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

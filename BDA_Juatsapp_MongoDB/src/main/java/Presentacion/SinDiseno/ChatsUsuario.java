@@ -21,7 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import org.bson.types.ObjectId;
 
 /**
- * .
+ * null
+ *
  * @author rober
  */
 public class ChatsUsuario extends javax.swing.JFrame {
@@ -32,7 +33,10 @@ public class ChatsUsuario extends javax.swing.JFrame {
     private IUsuarioDAO usuarioDAO;
 
     /**
-     * Creates new form ChatsUsuario
+     * null
+     *
+     * @param usuario null
+     * @param db null
      */
     public ChatsUsuario(Usuario usuario, MongoDatabase db) {
         initComponents();
@@ -45,7 +49,7 @@ public class ChatsUsuario extends javax.swing.JFrame {
     }
 
     /**
-     * .
+     * null
      */
     private void cargarTablaChats() {
         DefaultTableModel model = (DefaultTableModel) tblContactos.getModel();
@@ -64,8 +68,9 @@ public class ChatsUsuario extends javax.swing.JFrame {
     }
 
     /**
-     * .
-     * @param idChat .
+     * null
+     *
+     * @param idChat null
      */
     private void cargarMensajes(ObjectId idChat) {
         DefaultTableModel model = (DefaultTableModel) tblMensajes.getModel();
@@ -283,6 +288,11 @@ public class ChatsUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * null
+     *
+     * @param evt null
+     */
     private void btnBuscarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMensajesActionPerformed
         int fila = tblContactos.getSelectedRow();
         if (fila == -1) {
@@ -295,6 +305,11 @@ public class ChatsUsuario extends javax.swing.JFrame {
         cargarMensajes(idChat);
     }//GEN-LAST:event_btnBuscarMensajesActionPerformed
 
+    /**
+     * null
+     *
+     * @param evt null
+     */
     private void btnEnviarMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarMensajeActionPerformed
         int fila = tblContactos.getSelectedRow();
         if (fila == -1) {
@@ -317,55 +332,35 @@ public class ChatsUsuario extends javax.swing.JFrame {
         cargarMensajes(idChat); // refrescar
     }//GEN-LAST:event_btnEnviarMensajeActionPerformed
 
+    /**
+     * null
+     *
+     * @param evt null
+     */
     private void btnCrearChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearChatActionPerformed
         AgregarChat ventana = new AgregarChat(usuarioActual, usuarioDAO, chatDAO);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnCrearChatActionPerformed
 
+    /**
+     * null
+     *
+     * @param evt null
+     */
     private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
         dispose();
         Main m = new Main();
         m.setVisible(true);
     }//GEN-LAST:event_btnCerrarSecionActionPerformed
 
+    /**
+     * null
+     *
+     * @param evt null
+     */
     private void btnCargarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTablaActionPerformed
         cargarTablaChats();
     }//GEN-LAST:event_btnCargarTablaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ChatsUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ChatsUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ChatsUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ChatsUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() Maid Kyouiku. Botsuraku Kizoku Rurikawa Tsubaki The Animation{
-//            public void run() {
-//                new ChatsUsuario().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarMensajes;

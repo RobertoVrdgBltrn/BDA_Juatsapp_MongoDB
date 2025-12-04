@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- * .
+ * null
+ *
  * @author rober
  */
 public class Main extends javax.swing.JFrame {
@@ -21,7 +22,7 @@ public class Main extends javax.swing.JFrame {
     MongoDatabase db = ConexionMongo.conectar();
 
     /**
-     * Creates new form Main
+     * null
      */
     public Main() {
         initComponents();
@@ -125,8 +126,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * .
-     * @param evt .
+     * null
+     *
+     * @param evt null
      */
     private void btnInciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInciarSesionActionPerformed
         IUsuarioDAO udao = new UsuarioDAO(db);
@@ -148,8 +150,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInciarSesionActionPerformed
 
     /**
-     * .
-     * @param evt .
+     * null
+     *
+     * @param evt null
      */
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
         AgregarUsuario au = new AgregarUsuario();
