@@ -9,7 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
 /**
  * Metodo para las encriptaciones de la contrasenia.
  *
- * @author rober
+ * @author Roberto Verdugo y Angel Servin
  */
 public class Seguridad {
 

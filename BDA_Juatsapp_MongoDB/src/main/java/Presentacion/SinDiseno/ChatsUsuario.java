@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import org.bson.types.ObjectId;
 
 /**
- *
+ * .
  * @author rober
  */
 public class ChatsUsuario extends javax.swing.JFrame {
@@ -44,6 +44,9 @@ public class ChatsUsuario extends javax.swing.JFrame {
         cargarTablaChats();
     }
 
+    /**
+     * .
+     */
     private void cargarTablaChats() {
         DefaultTableModel model = (DefaultTableModel) tblContactos.getModel();
         model.setRowCount(0);
@@ -60,6 +63,10 @@ public class ChatsUsuario extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * .
+     * @param idChat .
+     */
     private void cargarMensajes(ObjectId idChat) {
         DefaultTableModel model = (DefaultTableModel) tblMensajes.getModel();
         model.setRowCount(0);

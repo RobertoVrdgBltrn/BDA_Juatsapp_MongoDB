@@ -14,11 +14,16 @@ import Persistencia.UsuarioDAO;
 import com.mongodb.client.MongoDatabase;
 
 /**
+ * Pruebas para chats
  *
  * @author rober
  */
 public class PruebasChats {
 
+    /**
+     * .
+     * @param args .
+     */
     public static void main(String[] args) {
         MongoDatabase db = ConexionMongo.conectar();
 

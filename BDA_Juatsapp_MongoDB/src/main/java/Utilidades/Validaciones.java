@@ -7,7 +7,7 @@ package Utilidades;
 /**
  * Metodo para las validaciones en la capa de presentacion.
  *
- * @author rober
+ * @author Roberto Verdugo y Angel Servin
  */
 public class Validaciones {
 

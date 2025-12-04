@@ -11,54 +11,54 @@ import org.bson.types.ObjectId;
 /**
  * Clase que implementaran los metodos que utilizara la clase UsuarioDAO
  *
- * @author rober
+ * @author Roberto Verdugo y Angel Servin
  */
 public interface IUsuarioDAO {
 
     /**
      * Metodo para ingresar un nuevo usuario
      *
-     * @param usuario
+     * @param usuario .
      */
     void insertar(Usuario usuario);
 
     /**
      * Metodo para obtener un usuario mediante su telefono
      *
-     * @param telefono
-     * @return
+     * @param telefono .
+     * @return .
      */
     Usuario obtenerPorTelefono(String telefono);
 
     /**
      * Metodo para actualizar los datos de un usuario.
      *
-     * @param usuario
+     * @param usuario .
      */
     void actualizar(Usuario usuario);
 
     /**
      * Metodo para obtener un usuario mediante su id.
      *
-     * @param id
-     * @return
+     * @param id .
+     * @return .
      */
     Usuario obtenerPorId(ObjectId id);
 
     /**
      * Metodo para obtener todos los usuarios
      *
-     * @return
+     * @return .
      */
     List<Usuario> obtenerTodos();
 
     /**
      * Metodo para iniciar sesion en el programa.
      *
-     * @param telefono
-     * @param password
-     * @return
-     * @throws Exception
+     * @param telefono .
+     * @param password .
+     * @return .
+     * @throws Exception .
      */
     boolean iniciarSesion(String telefono, String password) throws Exception;
 }

@@ -1,7 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.bda_juatsapp_mongodb;
 
 import Entidades.Direccion;
@@ -15,19 +14,24 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 
 /**
+ * Pruebas para usuarios
  *
  * @author rober
  */
 public class PruebasUsuario {
 
+    /**
+     * .
+     * @param args .
+     */
     public static void main(String[] args) {
         MongoDatabase db = ConexionMongo.conectar();
         System.out.println("Se conecto");
-        
+
         IUsuarioDAO udao = new UsuarioDAO(db);
-        
+
         Direccion d = new Direccion("Laureles", "Machi lopez", "Ciudad Obregon");
-        
+
         Usuario u = new Usuario();
         u.setTelefono("6441234567");
         u.setPassword("juegosfriv");
@@ -35,7 +39,7 @@ public class PruebasUsuario {
         u.setFechaNacimiento(new Date());
         u.setDireccion(d);
         u.setChats(new ArrayList<ObjectId>());
-        
+
         Usuario u1 = new Usuario();
         u1.setTelefono("6442286891");
         u1.setPassword("juegosfriv");
@@ -43,17 +47,15 @@ public class PruebasUsuario {
         u1.setFechaNacimiento(new Date());
         u1.setDireccion(d);
         u1.setChats(new ArrayList<ObjectId>());
-        
+
         udao.insertar(u);
         udao.insertar(u1);
-        
+
         //Usuario buscado = udao.obtenerPorTelefono("6442286891");
         //System.out.println(buscado);
-        
         //buscado.setSexo("Helicoptero Apache");
         //udao.actualizar(buscado);
         //System.out.println("Se actualizo");
-
         udao.obtenerTodos().forEach(System.out::println);
     }
 }

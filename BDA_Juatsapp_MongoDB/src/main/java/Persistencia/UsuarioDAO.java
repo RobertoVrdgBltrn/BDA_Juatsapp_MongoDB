@@ -17,7 +17,7 @@ import org.bson.types.ObjectId;
  * Clase donde se establecen los metodos que se utilizaran para la entidad
  * "usuarios" en la bd.
  *
- * @author rober
+ * @author Roberto Verdugo y Angel Servin
  */
 public class UsuarioDAO implements IUsuarioDAO {
 

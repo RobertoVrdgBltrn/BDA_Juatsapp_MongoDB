@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  * Clase interface donde se estableceran los metodos que utlizaran en la clase
  * ChatDAO
  *
- * @author rober
+ * @author Roberto Verdugo y Angel Servin
  */
 public interface IChatDAO {
 

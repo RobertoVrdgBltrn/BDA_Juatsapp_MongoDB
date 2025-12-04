@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 import org.bson.types.ObjectId;
 
 /**
- *
- * @author Angel Servin
+ * Ventana de Agregar Usuario.
+ * @author Roberto Verdugo y Angel Servin
  */
 public class AgregarUsuarioChilo extends javax.swing.JFrame {
 
@@ -158,40 +158,78 @@ public class AgregarUsuarioChilo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * .
+     * @param evt .
+     */
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
+    /**
+     * .
+     * @param evt .
+     */
     private void txtSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSexoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSexoActionPerformed
 
+    /**
+     * .
+     * @param evt
+     */
     private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
+    /**
+     * .
+     * @param evt .
+     */
     private void txtCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCalleActionPerformed
 
+    /**
+     * .
+     * @param evt .
+     */
     private void txtColoniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColoniaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtColoniaActionPerformed
 
+    /**
+     * .
+     * @param evt .
+     */
     private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCiudadActionPerformed
 
+    /**
+     * .
+     * @param evt .
+     */
     private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContrasenaActionPerformed
 
+    /**
+     * Metodo para volver a la ventana anterior
+     *
+     * @param evt .
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         dispose();
         MainChilo m = new MainChilo();
         m.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Metodo para agregar una nueva cuenta
+     *
+     * @param evt .
+     */
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
         try {
             String telefono = txtTelefono.getText().trim();

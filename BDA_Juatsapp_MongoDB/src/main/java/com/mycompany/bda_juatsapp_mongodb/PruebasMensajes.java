@@ -4,8 +4,6 @@
  */
 package com.mycompany.bda_juatsapp_mongodb;
 
-import Entidades.Chat;
-import Entidades.Mensaje;
 import Entidades.Usuario;
 import Persistencia.ChatDAO;
 import Persistencia.ConexionMongo;
@@ -15,17 +13,18 @@ import Persistencia.IUsuarioDAO;
 import Persistencia.MensajeDAO;
 import Persistencia.UsuarioDAO;
 import com.mongodb.client.MongoDatabase;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
- * 
+ * Pruebas para mensajes
+ *
  * @author rober
  */
 public class PruebasMensajes {
 
+    /**
+     * .
+     * @param args .
+     */
     public static void main(String[] args) {
         MongoDatabase db = ConexionMongo.conectar();
         System.out.println("Se conecto");

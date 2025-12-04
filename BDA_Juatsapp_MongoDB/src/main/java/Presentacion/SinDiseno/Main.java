@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * .
  * @author rober
  */
 public class Main extends javax.swing.JFrame {
@@ -124,6 +124,10 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * .
+     * @param evt .
+     */
     private void btnInciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInciarSesionActionPerformed
         IUsuarioDAO udao = new UsuarioDAO(db);
         String telefono = txtTelefono.getText();
@@ -143,6 +147,10 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInciarSesionActionPerformed
 
+    /**
+     * .
+     * @param evt .
+     */
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
         AgregarUsuario au = new AgregarUsuario();
         au.setVisible(true);

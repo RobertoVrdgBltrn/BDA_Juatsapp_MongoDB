@@ -13,25 +13,23 @@ import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
- * Clase donde se realizara la conexion con MongoDB para el funcionamiento del
- * codigo en general.
- *
- * @author rober
+ * Clase encargada de establecer la conexión con la base de datos MongoDB.
+ * @author Roberto Verdugo y Angel Servin
  */
 public class ConexionMongo {
 
     private static MongoDatabase database;
 
     /**
-     * Constructor Vacio.
+     * Contructor
      */
     private ConexionMongo() {
     }
 
     /**
-     * Metodo donde se realizara la conexion con MongoDB.
+     * Establece y devuelve la conexión a MongoDB.
      *
-     * @return La conexion con la BD establecida en el metodo.
+     * @return Objeto MongoDatabase conectado a "Juatsapp".
      */
     public static MongoDatabase conectar() {
         if (database == null) {
@@ -42,14 +40,12 @@ public class ConexionMongo {
                     .codecRegistry(CodecRegistries.fromRegistries(
                             MongoClientSettings.getDefaultCodecRegistry(),
                             CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build())
-                    )).build();
+                    ))
+                    .build();
 
             MongoClient cliente = MongoClients.create(settings);
             database = cliente.getDatabase("Juatsapp");
-        } else {
-            System.out.println("No se conecto");
         }
-
         return database;
     }
 }

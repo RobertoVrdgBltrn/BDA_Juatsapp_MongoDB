@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import org.bson.types.ObjectId;
 
 /**
- *
- * @author Angel Servin
+ * Ventana de Agregar Chat.
+ * @author Roberto Verdugo y Angel Servin
  */
 public class AgregarChatChilo extends javax.swing.JFrame {
 
@@ -101,10 +101,20 @@ public class AgregarChatChilo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para volver a la penstania anterior
+     *
+     * @param evt .
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Metodo para agregrar un nuevo chat
+     *
+     * @param evt .
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String telefonoNuevo = txtNumeroTelefono.getText().trim();
 
@@ -139,6 +149,10 @@ public class AgregarChatChilo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al crear el chat.", "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
         }    }//GEN-LAST:event_btnAgregarActionPerformed
 
+    /**
+     * 
+     * @param evt  .
+     */
     private void txtNumeroTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroTelefonoActionPerformed
         btnAgregarActionPerformed(evt);
     }//GEN-LAST:event_txtNumeroTelefonoActionPerformed

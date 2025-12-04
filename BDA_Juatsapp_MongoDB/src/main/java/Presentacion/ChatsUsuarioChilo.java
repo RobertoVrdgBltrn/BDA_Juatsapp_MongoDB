@@ -21,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import org.bson.types.ObjectId;
 
 /**
- *
- * @author Angel Servin
+ * Ventana de Chats.
+ * @author Roberto Verdugo y Angel Servin
  */
 public class ChatsUsuarioChilo extends javax.swing.JFrame {
 
@@ -45,6 +45,9 @@ public class ChatsUsuarioChilo extends javax.swing.JFrame {
         cargarTablaChats();
     }
 
+    /**
+     * Metodo para cargar las tablas
+     */
     private void cargarTablaChats() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
@@ -61,6 +64,11 @@ public class ChatsUsuarioChilo extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Metodo para cargar los mensajes
+     *
+     * @param idChat .
+     */
     private void cargarMensajes(ObjectId idChat) {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
@@ -208,6 +216,11 @@ public class ChatsUsuarioChilo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para buscar los mensajes del chat.
+     *
+     * @param evt .
+     */
     private void btnBuscarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMensajesActionPerformed
         int fila = jTable1.getSelectedRow();
         if (fila == -1) {
@@ -222,20 +235,40 @@ public class ChatsUsuarioChilo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ID de chat inválido.", "Error", JOptionPane.ERROR_MESSAGE);
         }    }//GEN-LAST:event_btnBuscarMensajesActionPerformed
 
+    /**
+     * Metodo para cerrar sesion
+     *
+     * @param evt .
+     */
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         dispose();
         MainChilo m = new MainChilo();
         m.setVisible(true);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    /**
+     * Metodo para entrar a la ventana de agregar un nuevo chat
+     *
+     * @param evt .
+     */
     private void btnChatNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatNuevoActionPerformed
         AgregarChatChilo ventana = new AgregarChatChilo(usuarioActual, usuarioDAO, chatDAO);
         ventana.setVisible(true);    }//GEN-LAST:event_btnChatNuevoActionPerformed
 
+    /**
+     * Metodo para cargar la tabla de chats
+     *
+     * @param evt .
+     */
     private void btnCargarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarTablaActionPerformed
         cargarTablaChats();
     }//GEN-LAST:event_btnCargarTablaActionPerformed
 
+    /**
+     * Metodo para mandar mensajes
+     *
+     * @param evt .
+     */
     private void btnMandarMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMandarMensajeActionPerformed
         int fila = jTable1.getSelectedRow();
         if (fila == -1) {

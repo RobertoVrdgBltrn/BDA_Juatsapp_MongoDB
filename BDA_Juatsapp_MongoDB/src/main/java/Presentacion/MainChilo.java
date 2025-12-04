@@ -14,8 +14,8 @@ import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Angel Servin
+ * Ventana del inicio de sesion.
+ * @author Roberto Verdugo y Angel Servin
  */
 public class MainChilo extends javax.swing.JFrame {
 
@@ -99,6 +99,11 @@ public class MainChilo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para iniciar sesion
+     *
+     * @param evt .
+     */
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         IUsuarioDAO udao = new UsuarioDAO(db);
 
@@ -164,6 +169,11 @@ public class MainChilo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
+    /**
+     * Metodo para entar a la ventana de agregar cuenta
+     *
+     * @param evt .
+     */
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
         AgregarUsuarioChilo au = new AgregarUsuarioChilo();
         au.setVisible(true);

@@ -13,7 +13,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- *
+ * .
  * @author rober
  */
 public class AgregarChat extends javax.swing.JFrame {
@@ -106,10 +106,18 @@ public class AgregarChat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * .
+     * @param evt .
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * .
+     * @param evt .
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String telefonoNuevo = txtContactoNuevo.getText().trim();
 

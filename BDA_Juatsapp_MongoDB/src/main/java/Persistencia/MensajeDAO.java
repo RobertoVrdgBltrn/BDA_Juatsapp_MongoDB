@@ -18,7 +18,7 @@ import org.bson.types.ObjectId;
  * Clase donde se establecen los metodos que se utilizaran para la entidad
  * "mensaje" en la bd.
  *
- * @author rober
+ * @author Roberto Verdugo y Angel Servin
  */
 public class MensajeDAO implements IMensajeDAO {
 
